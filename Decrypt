@@ -1,0 +1,32 @@
+//File Decryptor: Basic.
+import java.io.*;
+import java.util.Scanner;
+
+public class FileDecryptor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the encrypted input file name: ");
+        String inputFileName = scanner.nextLine();
+
+        System.out.print("Enter the output file name for the decrypted content: ");
+        String outputFileName = scanner.nextLine();
+
+        try {
+            // Open input and output streams
+            try (FileInputStream fis = new FileInputStream(inputFileName);
+                 FileOutputStream fos = new FileOutputStream(outputFileName)) {
+
+                int byteRead;
+                while ((byteRead = fis.read()) != -1) {
+                    fos.write(byteRead - 5);
+                }
+            }
+
+            System.out.println("File decrypted successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
