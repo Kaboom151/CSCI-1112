@@ -1,0 +1,32 @@
+// File Encryptor
+import java.io.*;
+import java.util.Scanner;
+
+public class FileEncryptor {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the input file name: ");
+        String inputFileName = scanner.nextLine();
+
+        System.out.print("Enter the output file name: ");
+        String outputFileName = scanner.nextLine();
+
+        try {
+            // Open input and output streams
+            try (FileInputStream fis = new FileInputStream(inputFileName);
+                 FileOutputStream fos = new FileOutputStream(outputFileName)) {
+
+                int byteRead;
+                while ((byteRead = fis.read()) != -1) {
+                    fos.write(byteRead + 5);
+                }
+            }
+
+            System.out.println("File encoded successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
